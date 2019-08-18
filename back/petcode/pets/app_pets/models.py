@@ -7,7 +7,7 @@ class Users(models.Model):
   created = models.DateTimeField(auto_now=True)
   modified = models.DateTimeField(auto_now_add=True)
 
-  def _str_(self):
+  def __str__(self):
     return "{} - {}".format(self.username, self.email)
 
 class Animals(models.Model):
