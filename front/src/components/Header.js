@@ -12,7 +12,7 @@ const Header = () => {
 
           <div className="collapse navbar-collapse" id="navbarsExample09">
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item"><a className="nav-link" href="/login">Login</a></li>
+              
               <li className="nav-item  active"><a className="nav-link" href="/">Home</a></li>
 
               <li className="nav-item dropdown">
@@ -31,6 +31,8 @@ const Header = () => {
               </li>
 
               <li className="nav-item"><a className="nav-link" href="">Contato</a></li>
+              <li className="nav-item"><a className="nav-link btn btn-outline-primary" href="/login">Login</a></li>
+              <li className="nav-item"><a className="nav-link btn btn-primary" href="/registerUser">Registre se</a></li>
             </ul>
           </div>
         </div>
