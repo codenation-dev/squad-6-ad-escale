@@ -47,7 +47,7 @@ class Login extends Component {
 
 
   render = () => (
-    <section className="page-title section pb-0">
+    <section className="section pb-0">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-12 col-md-6">
@@ -56,7 +56,7 @@ class Login extends Component {
 
           <div className="col-12 col-md-6">
             <div className="">
-              <h1 className="h2">PetsCode - Login</h1>
+              <h1 className="h2">Login</h1>
 
               <form>
                 <div className="form-group">
