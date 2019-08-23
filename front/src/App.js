@@ -3,11 +3,12 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Header from './components/Header';
-import Home from './components/Home'
-import PostDetails from './components/PostDetails'
-import Login from './components/Login'
-import RegisterUser from './components/RegisterUser'
-import RegisterPet from './components/RegisterPet'
+import Home from './pages/home'
+import Login from './pages/login'
+import RegisterUser from './pages/registerUser'
+import RegisterPet from './pages/registerPet'
+import PostDetail from './components/PostDetail'
+
 
 class App extends Component {
   state = {
@@ -21,9 +22,9 @@ class App extends Component {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/login' component={Login} />
-          <Route path='/postitem' component={PostDetails} />
           <Route path='/registeruser' component={RegisterUser} />
-          <Route path='/Registerpet' component={RegisterPet} />
+          <Route path='/registerpet' component={RegisterPet} />
+          <Route path='/postdetail' component={PostDetail} />
         </Switch>
       </Fragment>
     )

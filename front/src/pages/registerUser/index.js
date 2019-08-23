@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import api from '../services/api'
+import api from '../../services/api'
 
 export default class RegisterUser extends Component {
   constructor(props) {
@@ -60,11 +60,11 @@ export default class RegisterUser extends Component {
       <div className="h-100 mt-5">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-5 text-center">
-              <img src={'images/auth/add_user.svg'} alt="Register user" className="img-fluid"/>
+            <div className="col-6">
+              <img src={'images/auth/login.svg'} alt="Register user" className="img-fluid"/>
             </div>
 
-            <div className="col-7">
+            <div className="col-6">
               <h1 className="h2">Criar usuario</h1>
 
               <div class="form-group">
@@ -85,7 +85,11 @@ export default class RegisterUser extends Component {
               <div class="form-group">
                 <button
                   onClick={this.onSubmit}
-                  className="btn btn-primary">Criar usuario</button>
+                  className="btn btn-block btn-primary">Criar usuario</button>
+
+                <a href="/login" className="btn btn-block btn-outline-primary">
+                  Já tenho cadastro
+                </a>
               </div>
             </div>
           </div>
