@@ -7,12 +7,12 @@ import Home from './components/Home'
 import PostDetails from './components/PostDetails'
 import Login from './components/Login'
 import RegisterUser from './components/RegisterUser'
+import RegisterPet from './components/RegisterPet'
 
 class App extends Component {
   state = {
     isLogged: true
   }
-
 
   render() {
     return (
@@ -23,17 +23,11 @@ class App extends Component {
           <Route path='/login' component={Login} />
           <Route path='/postitem' component={PostDetails} />
           <Route path='/registeruser' component={RegisterUser} />
+          <Route path='/Registerpet' component={RegisterPet} />
         </Switch>
-
-
       </Fragment>
-
-
-
     )
-
   }
-
 }
 
 export default App;
