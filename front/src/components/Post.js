@@ -8,7 +8,7 @@ const Post = ({ id, name, state, city, category, number }) => {
           <img src={`images/pets/${number}.jpg`} alt="portfolio-image" className="img-fluid w-100 d-block" />
             <div className="overlay-box">
               <div className="overlay-inner">
-                <a className="overlay-content" href={`/postDetail/${id}`}>
+                <a className="overlay-content" href='/postdetail'>
                   <h5 className="mb-0">{name}</h5>
                   <p>{state} - {city}</p>
                   <p>{category}</p>
