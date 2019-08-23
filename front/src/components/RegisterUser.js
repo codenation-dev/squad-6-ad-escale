@@ -1,98 +1,96 @@
-import React, { Fragment } from 'react'
-import { logout } from '../services/loginService'
-import userprofileService from '../services/userprofileService'
+import React, { Component } from 'react';
+import api from '../services/api'
 
-const User = ({ history }) => {
-    const handleLogout = () => {
-        logout()
-        history.push('/')
+export default class RegisterUser extends Component {
+  constructor(props) {
+    super(props)
 
+    this.onChangeName = this.onChangeName.bind(this)
+    this.onChangeUserName = this.onChangeUserName.bind(this)
+    this.onChangeEmail = this.onChangeEmail.bind(this)
+    
+    this.state = {
+      name: '',
+      username: '',
+      email: ''  
+    }
+  }
+  
+  onChangeName = event => {
+    this.setState({
+      name: event.target.value
+    })
+  }
+
+  onChangeUserName = event => {
+    this.setState({
+      username: event.target.value
+    })
+  }
+
+  onChangeEmail = event => {
+    this.setState({
+      email: event.target.value
+    })
+  }
+
+  onSubmit = async event => {
+    event.preventDefault()
+
+    const { name, username, email } = this.state
+
+    const user = {
+      name,
+      username,
+      email
     }
 
-    const insertUserProfile = e => {
-        e.preventDefault()
-        userprofileService.insert("Nome",
-            { comment: 'this.state.comment' })
+    await api.post('/animals', user)
+      .then(resp => {
+        alert('Usuario criado com sucesso', resp)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
 
-    }
-
+  render() {
     return (
-        <div className='container'>
-            <div className="row">
+      <div className="h-100 mt-5">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-5 text-center">
+              <img src={'images/auth/add_user.svg'} alt="Register user" className="img-fluid"/>
+            </div>
 
-                <div className="col-md-8 order-md-1">
-                    <h4 className="mb-3">Perfil</h4>
-                    <form className="needs-validation" >
+            <div className="col-7">
+              <h1 className="h2">Criar usuario</h1>
 
-                        <div className="mb-3">
-                            <label htmlFor="lastName">Nome</label>
-                            <input type="text" className="form-control" id="lastName" placeholder="" value="" required="" />
-                            <div className="invalid-feedback">
-                                Valid last name is required.
-                            </div>
-                        </div>
+              <div class="form-group">
+                <label for="name">Seu nome</label>
+                <input type="text" onChange={this.onChangeName} value={this.state.name} class="form-control" name="name" id="name" placeholder="Maria da Silva" />
+              </div>
 
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text"onChange={this.onChangeUserName} value={this.state.username} class="form-control" name="username" id="username" placeholder="Maria123" />
+              </div>
 
-                        <div className="mb-3">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" className="form-control" id="email" placeholder="you@example.com" />
-                            <div className="invalid-feedback">
-                                Please enter a valid email address for shipping updates.
+              <div class="form-group">
+                <label for="email">Seu email</label>
+                <input type="email"onChange={this.onChangeEmail} value={this.state.email} class="form-control" name="email" id="email" placeholder="maria@gmail.com" />
+              </div>
+
+              <div class="form-group">
+                <button
+                  onClick={this.onSubmit}
+                  className="btn btn-primary">Criar usuario</button>
+              </div>
+            </div>
           </div>
-                        </div>
-
-                        <div className="mb-3">
-                            <label htmlFor="address">Endereço</label>
-                            <input type="text" className="form-control" id="address" placeholder="Rua/Avenida" required="" />
-                            <div className="invalid-feedback">
-                                Please enter your shipping address.
-                         </div>
-                        </div>
-
-                        <div className="mb-3">
-                            <label htmlFor="address2">Teleone</label>
-                            <input type="text" className="form-control" id="address2" placeholder="(00) 0000-0000" />
-                        </div>
-
-                        <div className="row">
-                            <div className="col-md-5 mb-3">
-                                <label htmlFor="country">Country</label>
-                                <select className="custom-select d-block w-100" id="country" required="">
-                                    <option value="">Choose...</option>
-                                    <option>United States</option>
-                                </select>
-                                <div className="invalid-feedback">
-                                    Please select a valid country.
-            </div>
-                            </div>
-                            <div className="col-md-4 mb-3">
-                                <label htmlFor="state">State</label>
-                                <select className="custom-select d-block w-100" id="state" required="">
-                                    <option value="">Choose...</option>
-                                    <option>California</option>
-                                </select>
-                                <div className="invalid-feedback">
-                                    Please provide a valid state.
-            </div>
-                            </div>
-                            <div className="col-md-3 mb-3">
-                                <label htmlFor="zip">Zip</label>
-                                <input type="text" className="form-control" id="zip" placeholder="" required="" />
-                                <div className="invalid-feedback">
-                                    Zip code required.
-            </div>
-                            </div>
-                        </div>
-
-                        <button onClick={insertUserProfile} className="btn btn-primary btn-lg " type="submit">Atualizar cadastro</button>
-                    </form>
-                </div>
-            </div>
         </div>
+      </div>
     )
+  }
 }
-
-export default User
-
-
