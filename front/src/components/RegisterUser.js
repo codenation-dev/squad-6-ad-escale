@@ -1,20 +1,20 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { logout } from '../services/loginService'
 import userprofileService from '../services/userprofileService'
 
 const User = ({ history }) => {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
     const handleLogout = () => {
         logout()
         history.push('/')
-
     }
 
     const insertUserProfile = e => {
-        e.preventDefault()
-        userprofileService.insert("Nome",
-            { comment: 'this.state.comment' })
-
-
+        console.log(name, email, password)
     }
 
     return (
@@ -31,27 +31,28 @@ const User = ({ history }) => {
 
                             <div class="form-group">
                                 <label for="name">Seu nome</label>
-                                <input type="text" value='' class="form-control" name="name" id="name" placeholder="Maria da Silva" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" value='' class="form-control" name="username" id="username" placeholder="Maria123" />
+                                <input type="text" value={name} class="form-control" name="name" id="name" placeholder="Maria da Silva" onChange={e => setName(e.target.value)}/>
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Seu email</label>
-                                <input type="email" value='' class="form-control" name="email" id="email" placeholder="maria@gmail.com" />
+                                <input type="email" value={email} class="form-control" name="email" id="email" placeholder="maria@gmail.com" onChange={e => setEmail(e.target.value)}/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">Senha</label>
+                                <input type="password" value={password} class="form-control" name="password" id="password" placeholder="Senha" onChange={e => setPassword(e.target.value)}/>
                             </div>
 
                             <div class="form-group">
                                 <button
-                                    onClick={this.onSubmit}
-                                    className="btn btn-block btn-primary">Criar usuario</button>
+                                    onClick={insertUserProfile}
+                                    className="btn btn-block btn-primary">Criar usuario
+                                </button>
 
-                                <a href="/login" className="btn btn-block btn-outline-primary">
+                                <Link to="/login" className="btn btn-block btn-outline-primary">
                                     Já tenho cadastro
-                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
