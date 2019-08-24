@@ -5,14 +5,16 @@ import { withRouter } from 'react-router';
 
 import Header from '../components/Header'
 import Home from '../components/Home'
-import PostDetails from '../components/PostDetails'
+import PetDetail from '../pages/pet/detail'
 import Login from '../pages/login'
 import RegisterUser from '../pages/registerUser'
 
+import RegisterPet from '../pages/registerUser'
+
 const MyRouter = () => {
 
-    const PostDetailsRoute = ({ match }) => (
-        <PostDetails searchId={match.params.id} />
+    const PetDetailRoute = ({ match }) => (
+        <PetDetail searchId={match.params.id} />
     )
 
     return (
@@ -21,8 +23,9 @@ const MyRouter = () => {
             <Switch>
                 <Route path='/' exact component={Home} />
                 <Route path='/login' component={Login} />
-                <Route path='/posts/:id' exact component={PostDetailsRoute} />
+                <Route path='/posts/:id' exact component={PetDetailRoute} />
                 <Route path='/registeruser' component={RegisterUser} />
+                <Route path='/registerpet' component={RegisterPet} />
             </Switch>
         </Fragment>
     )
