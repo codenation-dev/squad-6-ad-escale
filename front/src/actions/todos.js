@@ -1,10 +1,10 @@
-export function requestTodoList() {
+export function requestAllanimals() {
     return {
-        type: 'REQUEST_TODO_LIST'
+        type: 'REQUEST_ALL_ANIMALS'
     }
 }
 
-export function requestSingle(id) {
+export function requestSingleAnimal(id) {
     return {
         type: 'REQUEST_SINGLE_ID',
         payload: id

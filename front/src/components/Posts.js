@@ -6,10 +6,10 @@ import * as TodoActions from '../actions/todos'
 
 import Post from './Post'
 
-const Posts = ({ todos, requestTodoList, requestSingle }) => {
-    
+const Posts = ({ todos, requestAllanimals, requestSingleAnimal, single }) => {
+
     useEffect(() => {
-        requestTodoList()
+        requestAllanimals()
     }, [])
 
     return (
@@ -33,9 +33,9 @@ const Posts = ({ todos, requestTodoList, requestSingle }) => {
                         </div>
                     </div>
                 </div>
-                {/* <button onClick={() => requestTodoList()}>Carregar todos</button>
-                <button onClick={() => requestSingle(3)}>teste single</button> */}
 
+                <button onClick={() => requestSingleAnimal(3)}>teste single</button>
+                {console.log(single)}
 
                 <div className="row shuffle-wrapper portfolio-gallery">
                     {todos.data.map((elem, index) => {
@@ -49,6 +49,7 @@ const Posts = ({ todos, requestTodoList, requestSingle }) => {
 
 const mapStateToProps = state => ({
     todos: state.todos,
+    single: state.singleAnimal
 })
 
 const mapDispatchToProps = dispatch =>
