@@ -1,0 +1,32 @@
+[
+    {
+        "contact": 1,
+        "name": "jade",
+        "description": "Nice dog",
+        "image": "https://desafio2019.herokuapp.com/api/animals/imgs/animals/jade.jpg",
+        "age": 5,
+        "color": "dourado",
+        "gender": "F",
+        "specie": "cachorro",
+        "size": "pequeno",
+        "category": "perdido",
+        "location": "rua feliz",
+        "city": "São Paulo",
+        "state": "SP"
+    },
+    {
+        "contact": 1,
+        "name": "Clecio Almeida",
+        "description": "desc",
+        "image": "https://desafio2019.herokuapp.com/api/animals/imgs/animals/45423964_2072971839437183_7091218888070791168_n.jpg",
+        "age": 19,
+        "color": "Marrom",
+        "gender": "F",
+        "specie": "cachorro",
+        "size": "pequeno",
+        "category": "achado",
+        "location": "Zona Sul - SAO PAULO - SP",
+        "city": "SAO PAULO",
+        "state": "SP"
+    }
+]
