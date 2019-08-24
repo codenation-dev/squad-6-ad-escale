@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { withRouter } from 'react-router';
 
+import Header from '../components/Header'
 import Home from '../components/Home'
 import PostDetails from '../components/PostDetails'
 import Login from '../components/Login'
@@ -16,21 +17,15 @@ const MyRouter = () => {
 
     return (
         <Fragment>
-
+            <Header />
             <Switch>
                 <Route path='/' exact component={Home} />
-
                 <Route path='/login' component={Login} />
-
                 <Route path='/posts/:id' exact component={PostDetailsRoute} />
                 <Route path='/registeruser' component={RegisterUser} />
             </Switch>
-
         </Fragment>
-
-
     )
-
 }
 
 export default withRouter(MyRouter)
