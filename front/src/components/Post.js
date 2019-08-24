@@ -8,7 +8,7 @@ const Post = ({ animal }) => {
       data-groups="[&quot;design&quot;,&quot;illustration&quot;]">
       <div className="position-relative inner-box">
         <div className="image position-relative ">
-          <img src={animal.image} alt="portfolio-image" className="img-fluid w-100 d-block" />
+          <img src={animal.image} alt="portfolio" className="img-fluid w-100 d-block" />
           <div className="overlay-box">
             <div className="overlay-inner">
               <Link to={`/posts/${animal.id}`} className="overlay-content">

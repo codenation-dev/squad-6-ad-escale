@@ -10,7 +10,7 @@ const PostDetails = ({ searchId, todos }) => {
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-6">
-              <img src={filtered.image} className="img-fluid" />
+              <img src={filtered.image} className="img-fluid" alt="Pet" />
             </div>
 
             <div className="col-12 col-md-6">
