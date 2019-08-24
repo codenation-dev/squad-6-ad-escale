@@ -7,7 +7,7 @@ import store from './store'
 import './index.css';
 import './scss/custom.scss';
 
-import MyRouter from "./router/router";
+import MyRouter from './router';
 
 ReactDOM.render(
     <Provider store={store}>

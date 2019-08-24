@@ -6,8 +6,8 @@ import { withRouter } from 'react-router';
 import Header from '../components/Header'
 import Home from '../components/Home'
 import PostDetails from '../components/PostDetails'
-import Login from '../components/Login'
-import RegisterUser from '../components/RegisterUser'
+import Login from '../pages/login'
+import RegisterUser from '../pages/registerUser'
 
 const MyRouter = () => {
 
