@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -6,11 +6,13 @@ import * as TodoActions from '../actions/todos'
 
 import Post from './Post'
 
-
 const Posts = ({ todos, requestTodoList, requestSingle }) => {
+    
+    useEffect(() => {
+        requestTodoList()
+    }, [])
 
     return (
-
         <main className="portfolio">
             <div className="container">
                 <div className="row mb-5">
@@ -21,30 +23,24 @@ const Posts = ({ todos, requestTodoList, requestSingle }) => {
                             </label>
                             <label className="btn">
                                 <input type="radio" name="shuffle-filter" value="design" />Cães
-              </label>
+                            </label>
                             <label className="btn">
                                 <input type="radio" name="shuffle-filter" value="branding" />Gatos
-              </label>
+                            </label>
                             <label className="btn">
                                 <input type="radio" name="shuffle-filter" value="illustration" />Aves
-              </label>
-
+                            </label>
                         </div>
                     </div>
                 </div>
-                <button onClick={() => requestTodoList()}>Carregar todos</button>
-                <button onClick={() => requestSingle(3)}>teste single</button>
+                {/* <button onClick={() => requestTodoList()}>Carregar todos</button>
+                <button onClick={() => requestSingle(3)}>teste single</button> */}
 
 
                 <div className="row shuffle-wrapper portfolio-gallery">
-
-                    {
-                        todos.data.map((elem, index) => {
-                            return <Post key={index} animal={elem} />
-                        })
-                    }
-
-
+                    {todos.data.map((elem, index) => {
+                        return <Post key={index} animal={elem} />
+                    })}
                 </div>
             </div>
         </main>

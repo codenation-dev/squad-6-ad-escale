@@ -1,33 +1,17 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import Header from './components/Header'
 
-
-
-
-class App extends Component {
-  state = {
-    isLogged: true
-  }
-
+const App = () => {
   render() {
-
     return (
       <Fragment>
         <div>
           <Header />
           {this.props.children}
-
-
         </div>
-
       </Fragment>
-
-
-
     )
-
   }
-
 }
 
 export default App
