@@ -16,6 +16,6 @@ const slugify = (str) => str
   .trim()
 
 export {
-    slugify,
-    localStorageWrapper
+  slugify,
+  localStorageWrapper
 }

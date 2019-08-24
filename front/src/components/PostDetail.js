@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import api from '../services/api'
 
 export default class PostDetail extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
-      pet: {} 
+      pet: {}
     }
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     const { id } = this.props.match.params
 
     const response = await api.get(`/pets/${id}`)
 
     this.setState({ pet: response.data })
   }
-  
 
-
-  render() {
+  render () {
     return (
       <div className="h-100 mt-5">
         <div className="container">
@@ -29,7 +27,7 @@ export default class PostDetail extends Component {
               <img src="https://pet-uploads.adoptapet.com/a/8/2/363003064.jpg" className="img-fluid" />
             </div>
 
-            <div className="col-12 col-md-6">                
+            <div className="col-12 col-md-6">
               <div>
                 <h3>Localização</h3>
                 <p>São Paulo - SP</p>
