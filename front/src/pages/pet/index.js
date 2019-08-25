@@ -1,96 +1,50 @@
-import React, { Component } from 'react';
-import api from '../services/api'
+import React, { Fragment, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-export default class PostDetail extends Component {
-  constructor(props) {
-    super(props)
+import * as AnimalsActions from '../../actions/animals'
 
-    this.onChangeName = this.onChangeName.bind(this)
-    this.onChangeUserName = this.onChangeUserName.bind(this)
-    this.onChangeEmail = this.onChangeEmail.bind(this)
-    
-    this.state = {
-      name: '',
-      username: '',
-      email: ''  
-    }
-  }
-  
-  onChangeName = event => {
-    this.setState({
-      name: event.target.value
-    })
-  }
+const PostDetails = ({ animal, getAnimalDetails, match }) => {
+  useEffect(() => {
+    getAnimalDetails(match.params.id)
+  }, [getAnimalDetails, match.params.id])
 
-  onChangeUserName = event => {
-    this.setState({
-      username: event.target.value
-    })
-  }
-
-  onChangeEmail = event => {
-    this.setState({
-      email: event.target.value
-    })
-  }
-
-  onSubmit = async event => {
-    event.preventDefault()
-
-    const { name, username, email } = this.state
-
-    const user = {
-      name,
-      username,
-      email
-    }
-
-    await api.post('/animals', user)
-      .then(resp => {
-        alert('Usuario criado com sucesso', resp)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-
-  render() {
-    return (
-      <div className="h-100 mt-5">
+  return (
+    <Fragment>
+      <section className="section portfolio-single">
         <div className="container">
           <div className="row">
             <div className="col-12 col-md-6">
-              <img src="https://pet-uploads.adoptapet.com/a/8/2/363003064.jpg" className="img-fluid" />
+              <img src={animal.image} className="img-fluid" alt="Pet" />
             </div>
 
-            <div className="col-12 col-md-6">                
+            <div className="col-12 col-md-6">
               <div>
                 <h3>Localização</h3>
-                <p>São Paulo - SP</p>
+                <p>{animal.city} - {animal.state}</p>
               </div>
 
               <div className="row">
                 <div className="col-4">
                   <strong>Idade</strong>
-                  <p>21</p>
+                  <p>{animal.age}</p>
                 </div>
 
                 <div className="col-4">
                   <strong>Cor</strong>
-                  <p>Preto</p>
+                  <p>{animal.color}</p>
                 </div>
 
                 <div className="col-4">
                   <strong>Genero</strong>
-                  <p>Macho</p>
+                  <p>{animal.gender}</p>
                 </div>
               </div>
 
               <div className="row">
                 <div className="col-4">
                   <strong>Tamanho</strong>
-                  <p>Grande</p>
+                  <p>{animal.size}</p>
                 </div>
               </div>
 
@@ -112,13 +66,22 @@ export default class PostDetail extends Component {
 
               <h4>Sobre o pet</h4>
               <p>
-                Woof woof! Hi there, I'm a super cute and cuddly doggie. I'm an energetic girl who enjoys the little things in life like long walks on the beach and snacks galore. I'm very friendly with everyone I meet and I look forward to playing all day long with other puppies. I'm very outgoing and social, so come on down to meet me today. My adoption fee covers my spay, up-to-date vaccines and microchipping.
+                Woof woof! Hi there, I&apos;m a super cute and cuddly doggie. I&apos;m an energetic girl who enjoys the little things in life like long walks on the beach and snacks galore. I&apos;m very friendly with everyone I meet and I look forward to playing all day long with other puppies. I&apos;m very outgoing and social, so come on down to meet me today. My adoption fee covers my spay, up-to-date vaccines and microchipping.
               </p>
             </div>
-
           </div>
         </div>
-      </div>
-    )
-  }
+      </section>
+
+    </Fragment>
+  )
 }
+
+const mapStateToProps = state => ({
+  animal: state.animals.animal
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(AnimalsActions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetails)

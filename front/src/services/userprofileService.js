@@ -1,5 +1,5 @@
 import { localStorageWrapper } from '../helpers'
-import { isLogged, getUser } from './loginService'
+import { isLogged } from './loginService'
 
 const NAMESPACE = 'user_profile'
 
@@ -9,8 +9,8 @@ const userprofileService = {
       throw new Error('User not logged')
     }
 
-    const user_profile = localStorageWrapper.get(NAMESPACE) || {}
-    user_profile[recipeSlug] = (user_profile[recipeSlug] || []).concat({
+    const userProfile = localStorageWrapper.get(NAMESPACE) || {}
+    userProfile[recipeSlug] = (userProfile[recipeSlug] || []).concat({
       ...comment,
       nome: 'altor',
       email: 'email@teste.com',
@@ -21,7 +21,7 @@ const userprofileService = {
       date: +new Date()
     })
 
-    localStorageWrapper.set(NAMESPACE, user_profile)
+    localStorageWrapper.set(NAMESPACE, userProfile)
     return true
   },
   get: (recipeSlug) => (localStorageWrapper.get(NAMESPACE) || {})[recipeSlug] || [],
@@ -31,9 +31,9 @@ const userprofileService = {
       throw new Error('User not logged')
     }
 
-    const user_profile = localStorageWrapper.get(NAMESPACE) || {}
-    user_profile[recipeSlug] = (user_profile[recipeSlug] || []).filter(comment => target.date !== comment.date)
-    localStorageWrapper.set(NAMESPACE, user_profile)
+    const userProfile = localStorageWrapper.get(NAMESPACE) || {}
+    userProfile[recipeSlug] = (userProfile[recipeSlug] || []).filter(comment => target.date !== comment.date)
+    localStorageWrapper.set(NAMESPACE, userProfile)
     return true
   }
 }

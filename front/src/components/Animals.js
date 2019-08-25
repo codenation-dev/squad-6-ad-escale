@@ -1,16 +1,8 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React from 'react'
 
-import * as TodoActions from '../actions/todos'
+import Animal from './Animal'
 
-import Post from './Post'
-
-const Posts = ({ todos, requestAllanimals, requestSingleAnimal, single }) => {
-  useEffect(() => {
-    requestAllanimals()
-  }, [])
-
+const Animals = ({ animals }) => {
   return (
     <main className="portfolio">
       <div className="container">
@@ -18,7 +10,7 @@ const Posts = ({ todos, requestAllanimals, requestSingleAnimal, single }) => {
           <div className="col-10">
             <div className="btn-group btn-group-toggle " data-toggle="buttons">
               <label className="btn active ">
-                <input type="radio" name="shuffle-filter" value="all" checked="checked" />Todos os Pets
+                <input type="radio" name="shuffle-filter" value="all" defaultChecked />Todos os Pets
               </label>
               <label className="btn">
                 <input type="radio" name="shuffle-filter" value="design" />Cães
@@ -33,12 +25,12 @@ const Posts = ({ todos, requestAllanimals, requestSingleAnimal, single }) => {
           </div>
         </div>
 
-        <button onClick={() => requestSingleAnimal(3)}>teste single</button>
-        {console.log(single)}
+        {/* <button onClick={() => requestSingleAnimal(3)}>teste single</button>
+        {console.log(single)} */}
 
         <div className="row shuffle-wrapper portfolio-gallery">
-          {todos.data.map((elem, index) => {
-            return <Post key={index} animal={elem} />
+          {animals.map((elem, index) => {
+            return <Animal key={index} animal={elem} />
           })}
         </div>
       </div>
@@ -46,12 +38,4 @@ const Posts = ({ todos, requestAllanimals, requestSingleAnimal, single }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  todos: state.todos,
-  single: state.singleAnimal
-})
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(TodoActions, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+export default Animals

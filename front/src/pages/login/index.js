@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { register, login, isLogged } from '../../services/loginService'
 
 class Login extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       email: '',
@@ -19,11 +19,10 @@ class Login extends Component {
     try {
       register({ email, password })
       login({ email, password })
-        // {this.props.history.push('/')}
+      // {this.props.history.push('/')}
     } catch (err) {
       alert(err)
     }
-
   }
 
   getLogin = e => {
@@ -33,7 +32,7 @@ class Login extends Component {
 
     try {
       login({ email, password })
-      //{this.props.history.push('/')}
+      // {this.props.history.push('/')}
     } catch (error) {
       alert(error)
     }
@@ -44,7 +43,6 @@ class Login extends Component {
       [field]: event.target.value
     })
   }
-
 
   render = () => (
     <section className="section pb-0">
@@ -60,7 +58,7 @@ class Login extends Component {
 
               <form>
                 <div className="form-group">
-                  <label for="email">Seu email</label>
+                  <label htmlFor="email">Seu email</label>
                   <input
                     name="email"
                     id="email"
@@ -73,7 +71,7 @@ class Login extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label for="password">Sua senha</label>
+                  <label htmlFor="password">Sua senha</label>
                   <input
                     name="password"
                     id="password"

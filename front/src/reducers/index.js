@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import todos from './dataposts'
+import animals from './animals'
 
 export default combineReducers({
-  todos
+  animals
 })

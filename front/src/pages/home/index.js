@@ -1,14 +1,30 @@
-import React, { Fragment } from 'react'
-import Banner from '../../components/Banner'
-import Posts from '../../components/Posts'
+import React, { Fragment, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-const Home = () => {
+import * as AnimalsActions from '../../actions/animals'
+
+import Banner from '../../components/Banner'
+import Animals from '../../components/Animals'
+
+const Home = ({ animals, getAllAnimals }) => {
+  useEffect(() => {
+    getAllAnimals()
+  }, [getAllAnimals])
+
   return (
     <Fragment>
-      <Banner />
-      <Posts />
+      <Banner/>
+      <Animals animals={animals} />
     </Fragment>
   )
 }
 
-export default Home
+const mapStateToProps = state => ({
+  animals: state.animals.animals
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(AnimalsActions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
