@@ -66,7 +66,7 @@ const PostDetails = ({ animal, getAnimalDetails, match }) => {
 
               <h4>Sobre o pet</h4>
               <p>
-                Woof woof! Hi there, I&apos;m a super cute and cuddly doggie. I&apos;m an energetic girl who enjoys the little things in life like long walks on the beach and snacks galore. I&apos;m very friendly with everyone I meet and I look forward to playing all day long with other puppies. I&apos;m very outgoing and social, so come on down to meet me today. My adoption fee covers my spay, up-to-date vaccines and microchipping.
+                {animal.description}
               </p>
             </div>
           </div>
