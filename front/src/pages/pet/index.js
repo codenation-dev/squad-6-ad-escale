@@ -78,7 +78,7 @@ const PostDetails = ({ animal, getAnimalDetails, match }) => {
 }
 
 const mapStateToProps = state => ({
-  animal: state.animals.animal
+  animal: state.animal.animal
 })
 
 const mapDispatchToProps = dispatch =>
