@@ -6,9 +6,7 @@ const Header = () => {
     <header>
       <nav className="navbar navbar-expand-lg  main-nav " id="navbar">
         <div className="container">
-          <Link to="/" className="navbar-brand">
-            PetsCode
-          </Link>
+
 
           <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
             <span className="ti-align-justify"></span>

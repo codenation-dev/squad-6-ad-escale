@@ -1,37 +1,59 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Animal from './Animal'
 
+
 const Animals = ({ animals }) => {
+
+  const [specie, setSpecie] = useState(animals)
+  const dogs = animals.filter(animal => animal.specie === 'cachorro')
+  const cats = animals.filter(animal => animal.specie === 'gato')
+  const found = animals.filter(animal => animal.category === 'achado')
+  const lost = animals.filter(animal => animal.category === 'perdido')
+  const adoption = animals.filter(animal => animal.category === 'adoção')
+
+  useEffect(() => {
+    setSpecie(animals)
+  }, [animals])
+
+
   return (
     <main className="portfolio">
       <div className="container">
         <div className="row mb-5">
           <div className="col-10">
-            <div className="btn-group btn-group-toggle " data-toggle="buttons">
-              <label className="btn active ">
-                <input type="radio" name="shuffle-filter" value="all" defaultChecked />Todos os Pets
+            <div className="btn-group btn-group-toggle ">
+              <label className="btn" onClick={() => setSpecie(animals)}>
+                Todos os Pets
               </label>
-              <label className="btn">
-                <input type="radio" name="shuffle-filter" value="design" />Cães
+              <label className="btn" onClick={() => setSpecie(dogs)}>
+                Cães
               </label>
-              <label className="btn">
-                <input type="radio" name="shuffle-filter" value="branding" />Gatos
+              <label className="btn" onClick={() => setSpecie(cats)}>
+                Gatos
               </label>
-              <label className="btn">
-                <input type="radio" name="shuffle-filter" value="illustration" />Aves
+              <label className="btn" onClick={() => setSpecie(found)}>
+                Encontrado
               </label>
+              <label className="btn" onClick={() => setSpecie(lost)}>
+                Perdido
+              </label>
+              <label className="btn" onClick={() => setSpecie(adoption)}>
+                Adoção
+              </label>
+
             </div>
           </div>
         </div>
 
-        {/* <button onClick={() => requestSingleAnimal(3)}>teste single</button>
-        {console.log(single)} */}
+
 
         <div className="row shuffle-wrapper portfolio-gallery">
-          {animals.map((elem, index) => {
-            return <Animal key={index} animal={elem} />
-          })}
+          {
+            specie.map((elem, index) => {
+              return <Animal key={index} animal={elem} />
+            })
+          }
         </div>
       </div>
     </main>
