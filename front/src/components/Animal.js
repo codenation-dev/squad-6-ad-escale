@@ -8,7 +8,14 @@ const Animal = ({ animal }) => {
       data-groups="[&quot;design&quot;,&quot;illustration&quot;]">
       <div className="position-relative inner-box">
         <div className="image position-relative ">
-          <img src={animal.image} alt="portfolio" className="img-fluid w-100 d-block" />
+          {/* Prevent to don't show the image when it not exists */}
+          {
+            animal.image ? (
+              <img src={animal.image} alt="portfolio" className="img-fluid w-100 d-block" />
+            ) : (
+              <img src="/images/broken-image.png" alt="portfolio" className="img-fluid w-100 d-block" />
+            )
+          }
           <div className="overlay-box">
             <div className="overlay-inner">
               <Link to={`/posts/${animal.id}`} className="overlay-content">
