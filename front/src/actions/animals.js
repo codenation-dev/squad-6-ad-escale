@@ -38,3 +38,22 @@ export function failedGetAnimalDetails () {
     type: types.FAILED_GET_ALL_ANIMALS
   }
 }
+
+export function addAnimal (animal) {
+  return {
+    type: types.ADD_ANIMAL,
+    payload: animal
+  }
+}
+
+export function succcessAddAnimal () {
+  return {
+    type: types.SUCCESS_ADD_ANIMAL
+  }
+}
+
+export function failedAddAnimal () {
+  return {
+    type: types.FAILED_ADD_ANIMAL
+  }
+}

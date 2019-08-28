@@ -3,7 +3,7 @@ import { takeEvery, put, call, all } from 'redux-saga/effects'
 import * as types from '../types/animals'
 import * as actions from '../actions/animals'
 
-import { getAllAnimals, getAnimalDetails } from '../services/api'
+import { getAllAnimals, getAnimalDetails, createAnimal } from '../services/api'
 
 function * asyncGetAllAnimals () {
   try {
@@ -25,9 +25,20 @@ function * asyncGetAnimalDetails (action) {
   }
 }
 
+function * asyncAddAnimal (action) {
+  try {
+    yield call(createAnimal, action.payload)
+
+    yield put(actions.succcessAddAnimal())
+  } catch (err) {
+    yield put(actions.failedAddAnimal())
+  }
+}
+
 export default function * root () {
   yield all([
     takeEvery(types.GET_ALL_ANIMALS, asyncGetAllAnimals),
-    takeEvery(types.GET_ANIMAL_DETAILS, asyncGetAnimalDetails)
+    takeEvery(types.GET_ANIMAL_DETAILS, asyncGetAnimalDetails),
+    takeEvery(types.ADD_ANIMAL, asyncAddAnimal)
   ])
 }

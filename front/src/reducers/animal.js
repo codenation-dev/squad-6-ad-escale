@@ -27,6 +27,24 @@ export default function animal (state = INITIAL_STATE, action) {
         loading: false,
         error: true
       }
+    case types.ADD_ANIMAL:
+      return {
+        ...state,
+        loading: true,
+        error: false
+      }
+    case types.SUCCESS_ADD_ANIMAL:
+      return {
+        ...state,
+        loading: false,
+        error: false
+      }
+    case types.FAILED_ADD_ANIMAL:
+      return {
+        ...state,
+        loading: false,
+        error: true
+      }
     default:
       return state
   }
