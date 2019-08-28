@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   error: false
 }
 
-export default function animals(state = INITIAL_STATE, action) {
+export default function animals (state = INITIAL_STATE, action) {
   switch (action.type) {
     case types.GET_ALL_ANIMALS:
       return {

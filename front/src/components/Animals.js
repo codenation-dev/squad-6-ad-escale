@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import Animal from './Animal'
 
-
 const Animals = ({ animals }) => {
-
   const [specie, setSpecie] = useState(animals)
   const dogs = animals.filter(animal => animal.specie === 'cachorro')
   const cats = animals.filter(animal => animal.specie === 'gato')
@@ -15,7 +13,6 @@ const Animals = ({ animals }) => {
   useEffect(() => {
     setSpecie(animals)
   }, [animals])
-
 
   return (
     <main className="portfolio">
@@ -45,8 +42,6 @@ const Animals = ({ animals }) => {
             </div>
           </div>
         </div>
-
-
 
         <div className="row shuffle-wrapper portfolio-gallery">
           {
