@@ -24,9 +24,9 @@ export const createAnimal = async (animal) => {
   try {
     const formData = new FormData()
     for (const key in animal) {
-      console.log(key)
+
       if (key === 'image') {
-        console.log('found image')
+
         formData.append(key, animal[key])
       } else {
         formData.set(key, animal[key])
@@ -35,11 +35,12 @@ export const createAnimal = async (animal) => {
 
     const config = {
       headers: {
-        'content-type': 'multipart/form-data'
+        "key": "7ac9c7650af11b2c5584af58466d8664fad7cddb",
+        'Content-type': 'application/json'
       }
     }
-    const response = await api.post('animals', formData, config)
-    console.log(response)
+    const response = await api.post(`animals/create`, formData, config)
+    console.log('post', response)
   } catch (err) {
     return null
   }

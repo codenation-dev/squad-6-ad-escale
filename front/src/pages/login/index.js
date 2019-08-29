@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { reduxForm, Field } from 'redux-form'
+
 import { register, login, isLogged } from '../../services/loginService'
 
 class Login extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       email: '',
@@ -49,7 +51,7 @@ class Login extends Component {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-12 col-md-6">
-            <img src={'images/auth/login.svg'} alt="Register user" className="img-fluid"/>
+            <img src={'images/auth/login.svg'} alt="Register user" className="img-fluid" />
           </div>
 
           <div className="col-12 col-md-6">
@@ -97,4 +99,4 @@ class Login extends Component {
   )
 }
 
-export default Login
+export default reduxForm({ form: 'LoginForm' })(Login)

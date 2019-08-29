@@ -8,7 +8,7 @@ import { getAllAnimals, getAnimalDetails, createAnimal } from '../services/api'
 function* asyncGetAllAnimals() {
   try {
     const response = yield call(getAllAnimals)
-    console.log(response)
+
 
     yield put(actions.successGetAnimals(response))
   } catch (err) {
