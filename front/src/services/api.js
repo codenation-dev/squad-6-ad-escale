@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: 'https://desafio2019.herokuapp.com/api' })
+const api = axios.create({ baseURL: 'http://nineth2019.pythonanywhere.com/api/' })
 
 export const getAllAnimals = async () => {
   try {
-    const response = await api.get('animals')
+    const response = await api.get('animals/')
     return response.data
   } catch (err) {
-    return null
+    return []
   }
 }
 
@@ -16,7 +16,7 @@ export const getAnimalDetails = async (animalId) => {
     const response = await api.get(`animals/${animalId}`)
     return response.data
   } catch (err) {
-    return null
+    return []
   }
 }
 
