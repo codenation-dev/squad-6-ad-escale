@@ -7,8 +7,7 @@ const Animal = ({ animal }) => {
   }
 
   return (
-    <div className="col-lg-4 col-6 mb-4 shuffle-item"
-      data-groups="[&quot;design&quot;,&quot;illustration&quot;]">
+    <div className="col-lg-4 col-6 mb-4 shuffle-item">
       <div className="position-relative inner-box">
         <div className="image position-relative ">
           <img onError={addDefaultImage} src={animal.image || '/images/empty.jpg'} alt={animal.name} className="img-fluid w-100 d-block" />

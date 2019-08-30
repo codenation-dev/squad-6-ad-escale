@@ -29,7 +29,7 @@ const RegisterUser = ({ loading, error, createUser }) => {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-6">
-            <img src={'images/auth/login.svg'} alt="Register user" className="img-fluid"/>
+            <img src={'images/auth/login.svg'} alt="Register user" className="img-fluid" />
           </div>
 
           <form onSubmit={onSubmit} className="col-6">
@@ -37,33 +37,33 @@ const RegisterUser = ({ loading, error, createUser }) => {
             {error && <div className="text-danger">Ocorreu um erro ao se registrar</div>}
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input type="text"onChange={e => setUsername(e.target.value)} value={username} className="form-control" name="username" id="username" placeholder="Maria123" required/>
+              <input type="text" onChange={e => setUsername(e.target.value)} value={username} className="form-control" name="username" id="username" placeholder="Maria123" required />
             </div>
 
             <div className="form-group">
               <label htmlFor="email">Seu email</label>
-              <input type="email"onChange={e => setEmail(e.target.value)} value={email} className="form-control" name="email" id="email" placeholder="maria@gmail.com" required/>
+              <input type="email" onChange={e => setEmail(e.target.value)} value={email} className="form-control" name="email" id="email" placeholder="maria@gmail.com" required />
             </div>
 
             <div className="form-group">
               <label htmlFor="password">Senha</label>
-              <input type="password"onChange={e => setPassword(e.target.value)} value={password} className="form-control" name="password" id="password" placeholder="123456" required/>
+              <input type="password" onChange={e => setPassword(e.target.value)} value={password} className="form-control" name="password" id="password" placeholder="123456" required />
             </div>
 
             <div className="form-group">
               <label htmlFor="confirmPassword">Confirmação de senha</label>
-              <input type="password"onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} className="form-control" name="confirmPassword" id="confirmPassword" placeholder="123456" required/>
+              <input type="password" onChange={e => setConfirmPassword(e.target.value)} value={confirmPassword} className="form-control" name="confirmPassword" id="confirmPassword" placeholder="123456" required />
             </div>
 
             <div className="form-group">
               <button
                 type="submit"
                 disabled={loading}
-                className="btn btn-block btn-primary">
+                className="btn btn-block btn-main">
                 {loading ? 'Cadastrando...' : 'Criar usuario'}
               </button>
 
-              <Link to="/login" className="btn btn-block btn-outline-primary">
+              <Link to="/login" className="btn btn-block btn-main">
                 Já tenho cadastro
               </Link>
             </div>

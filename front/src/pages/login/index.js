@@ -22,7 +22,7 @@ const Login = ({ userKey, loading, error, login, history }) => {
   }
 
   return (
-    <section className="section pb-0">
+    <section className="section-mg">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-12 col-md-6">
@@ -63,7 +63,7 @@ const Login = ({ userKey, loading, error, login, history }) => {
                 <div className="mt-5">
                   <button
                     disabled={loading}
-                    className="login btn btn-lg btn-primary btn-block"
+                    className="login btn btn-lg btn-main btn-block"
                     type="submit">
                     {loading ? 'Carregando...' : 'Fazer Login'}
                   </button>
