@@ -1,1 +1,7 @@
-/back/petcode/.env/
+/back/codenation_challenge/.env/
+/back/codenation_challenge/.DS_Store
+/back/codenation_challenge/app_pets/__pycache__/
+/back/codenation_challenge/pets/__pycache__/
+
+
+
