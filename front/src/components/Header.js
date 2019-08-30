@@ -1,7 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router'
 
-const Header = () => {
+import * as UserActions from '../actions/users'
+
+const Header = ({ userKey, logout, history }) => {
+  const handleLogout = () => {
+    logout()
+    history.push('/login')
+  }
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg  main-nav " id="navbar">
@@ -20,7 +30,7 @@ const Header = () => {
                 <Link to="/" className="nav-link">Home</Link>
               </li>
 
-              <li className="nav-item dropdown active">
+              {userKey && <li className="nav-item dropdown active">
                 <Link className="nav-link dropdown-toggle" to="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Cadastrar
                 </Link>
@@ -30,15 +40,19 @@ const Header = () => {
                     <Link to="/registerpet" className="dropdown-item">Pet Perdido ou adoção</Link>
                   </li>
                 </ul>
-              </li>
+              </li>}
 
-              <li className="nav-item">
+              {!userKey && <li className="nav-item">
                 <Link to="/login" className="nav-link">Login</Link>
-              </li>
+              </li>}
 
-              <li className="nav-item">
+              {!userKey && <li className="nav-item">
                 <Link to="/registeruser" className="nav-link">Registre se</Link>
-              </li>
+              </li>}
+
+              {userKey && <li className="nav-item">
+                <button onClick={handleLogout} className="btn btn-link nav-link">Sair</button>
+              </li>}
             </ul>
           </div>
         </div>
@@ -47,4 +61,11 @@ const Header = () => {
   )
 }
 
-export default Header
+const mapStateToProps = state => ({
+  userKey: state.users.key
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(UserActions, dispatch)
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))

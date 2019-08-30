@@ -1,10 +1,29 @@
 import axios from 'axios'
+import { store } from '../store'
 
-const api = axios.create({ baseURL: 'http://nineth2019.pythonanywhere.com/api/' })
+const api = axios.create({ baseURL: 'http://nineth2019.pythonanywhere.com/' })
+
+api.interceptors.request.use(async config => {
+  const token = await getToken()
+
+  if (token) {
+    config.headers = { Authorization: 'Token ' + token }
+  }
+  return config
+})
+
+const getToken = async () => {
+  const state = await store.getState()
+  if (state && state.users) {
+    return state.users.key
+  }
+
+  return null
+}
 
 export const getAllAnimals = async () => {
   try {
-    const response = await api.get('animals/')
+    const response = await api.get('api/animals/')
     return response.data
   } catch (err) {
     return []
@@ -13,7 +32,7 @@ export const getAllAnimals = async () => {
 
 export const getAnimalDetails = async (animalId) => {
   try {
-    const response = await api.get(`animals/${animalId}`)
+    const response = await api.get(`api/animals/${animalId}`)
     return response.data
   } catch (err) {
     return []
@@ -24,9 +43,7 @@ export const createAnimal = async (animal) => {
   try {
     const formData = new FormData()
     for (const key in animal) {
-
       if (key === 'image') {
-
         formData.append(key, animal[key])
       } else {
         formData.set(key, animal[key])
@@ -35,19 +52,14 @@ export const createAnimal = async (animal) => {
 
     const config = {
       headers: {
-        "key": "7ac9c7650af11b2c5584af58466d8664fad7cddb",
         'Content-type': 'application/json'
       }
     }
-    const response = await api.post(`animals/create`, formData, config)
-    console.log('post', response)
+    const response = await api.post(`api/animals/create`, formData, config)
+    return response.data
   } catch (err) {
-    return null
+    return err
   }
-  // try {
-  //   const response = api.post('animals', { ...animal })
-  //   return response.data
-  // } catch (err) {
-  //   return err
-  // }
 }
+
+export default api

@@ -1,52 +1,27 @@
-import React, { Component } from 'react'
-import { reduxForm, Field } from 'redux-form'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 
-import { register, login, isLogged } from '../../services/loginService'
+import * as UsersActions from '../../actions/users'
 
-class Login extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: '',
-      password: '',
-      islogged: isLogged()
+const Login = ({ userKey, loading, error, login, history }) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    if (userKey) {
+      history.push('/')
     }
-  }
+  }, [userKey])
 
-  getRegisterUser = e => {
+  const onSubmit = e => {
     e.preventDefault()
-    const email = this.state.email
-    const password = this.state.password
 
-    try {
-      register({ email, password })
-      login({ email, password })
-      // {this.props.history.push('/')}
-    } catch (err) {
-      alert(err)
-    }
+    login({ email, password })
   }
 
-  getLogin = e => {
-    e.preventDefault()
-    const email = this.state.email
-    const password = this.state.password
-
-    try {
-      login({ email, password })
-      // {this.props.history.push('/')}
-    } catch (error) {
-      alert(error)
-    }
-  }
-
-  handleChange = field => event => {
-    this.setState({
-      [field]: event.target.value
-    })
-  }
-
-  render = () => (
+  return (
     <section className="section pb-0">
       <div className="container">
         <div className="row align-items-center">
@@ -57,16 +32,16 @@ class Login extends Component {
           <div className="col-12 col-md-6">
             <div className="">
               <h1 className="h2">Login</h1>
-
-              <form>
+              {error && <div className="text-danger">Email e/ou senha inválido</div>}
+              <form onSubmit={onSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Seu email</label>
                   <input
                     name="email"
                     id="email"
                     type="email"
-                    onChange={this.handleChange('email')}
-                    value={this.state.email}
+                    onChange={e => setEmail(e.target.value)}
+                    value={email}
                     className="form-control"
                     placeholder="email"
                     required />
@@ -77,8 +52,8 @@ class Login extends Component {
                   <input
                     name="password"
                     id="password"
-                    onChange={this.handleChange('password')}
-                    value={this.state.password}
+                    onChange={e => setPassword(e.target.value)}
+                    value={password}
                     type="password"
                     className="form-control"
                     placeholder="Password"
@@ -86,8 +61,13 @@ class Login extends Component {
                 </div>
 
                 <div className="mt-5">
-                  <button className="login btn btn-lg btn-primary btn-block" onClick={this.getLogin} type="submit">Fazer Login</button>
-                  <button className="btn btn-lg btn-outline-secondary btn-block" onClick={this.getRegisterUser} type="submit">Não tenho cadastro</button>
+                  <button
+                    disabled={loading}
+                    className="login btn btn-lg btn-primary btn-block"
+                    type="submit">
+                    {loading ? 'Carregando...' : 'Fazer Login'}
+                  </button>
+                  <Link to="/registeruser" className="btn btn-lg btn-outline-secondary btn-block">Não tenho cadastro</Link>
                 </div>
 
               </form>
@@ -99,4 +79,13 @@ class Login extends Component {
   )
 }
 
-export default reduxForm({ form: 'LoginForm' })(Login)
+const mapStateToProps = state => ({
+  loading: state.users.loading,
+  error: state.users.error,
+  userKey: state.users.key
+})
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(UsersActions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

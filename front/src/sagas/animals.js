@@ -5,10 +5,9 @@ import * as actions from '../actions/animals'
 
 import { getAllAnimals, getAnimalDetails, createAnimal } from '../services/api'
 
-function* asyncGetAllAnimals() {
+function * asyncGetAllAnimals () {
   try {
     const response = yield call(getAllAnimals)
-
 
     yield put(actions.successGetAnimals(response))
   } catch (err) {
@@ -16,7 +15,7 @@ function* asyncGetAllAnimals() {
   }
 }
 
-function* asyncGetAnimalDetails(action) {
+function * asyncGetAnimalDetails (action) {
   try {
     const response = yield call(getAnimalDetails, action.payload)
 
@@ -26,7 +25,7 @@ function* asyncGetAnimalDetails(action) {
   }
 }
 
-function* asyncAddAnimal(action) {
+function * asyncAddAnimal (action) {
   try {
     yield call(createAnimal, action.payload)
 
@@ -36,7 +35,7 @@ function* asyncAddAnimal(action) {
   }
 }
 
-export default function* root() {
+export default function * root () {
   yield all([
     takeEvery(types.GET_ALL_ANIMALS, asyncGetAllAnimals),
     takeEvery(types.GET_ANIMAL_DETAILS, asyncGetAnimalDetails),

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
-import { Route, Switch } from 'react-router-dom'
-
+import { Route, Switch, Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
 
 import Header from '../components/Header'
 import Home from '../pages/home'
@@ -10,7 +10,16 @@ import Login from '../pages/login'
 import RegisterUser from '../pages/registerUser'
 import RegisterPet from '../pages/registerPet'
 
-const MyRouter = () => {
+const PrivateRoute = ({ component: Component, userKey, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      userKey ? <Component {...props} /> : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+    }
+  />
+)
+
+const MyRouter = ({ userKey }) => {
   return (
     <Fragment>
       <Header />
@@ -19,10 +28,14 @@ const MyRouter = () => {
         <Route path='/login' component={Login} />
         <Route path='/posts/:id' exact component={PetDetail} />
         <Route path='/registeruser' component={RegisterUser} />
-        <Route path='/registerpet' component={RegisterPet} />
+        <PrivateRoute userKey={userKey} path='/registerpet' component={RegisterPet} />
       </Switch>
     </Fragment>
   )
 }
 
-export default withRouter(MyRouter)
+const mapStateToProps = state => ({
+  userKey: state.users.key
+})
+
+export default withRouter(connect(mapStateToProps)(MyRouter))
