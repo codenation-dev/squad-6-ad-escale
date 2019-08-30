@@ -13,7 +13,7 @@ const Login = ({ userKey, loading, error, login, history }) => {
     if (userKey) {
       history.push('/')
     }
-  }, [userKey])
+  }, [userKey, history])
 
   const onSubmit = e => {
     e.preventDefault()
